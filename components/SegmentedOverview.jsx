@@ -80,7 +80,7 @@ const SegmentedOverview = ({
                 </div>
                 <div className='hidden basis-1/5 bg-bblue/80 lg:visible'></div>
             </div>
-            <div className='m-2 text-onyx text-[4.5vw] lg:text-[0.8rem]'>
+            <div className='m-2 text-onyx text-[0.8rem] font-redhat lg:text-[0.8rem]'>
                 {description}
             </div>
         </div>

@@ -9,7 +9,14 @@ const DotPagenation = ({
 
     return (
         Object.keys(data).map((e, i) => (
-            <button disabled={translate !== 'null'} key={i + 'page'} className={'text-onyx'} onClick={(e) => { (i != current) ? handler(e, i) : false }}>{i === current ? '•' : '◦'}</button>))
+            <button 
+                disabled={translate !== 'null'} 
+                key={i + 'page'} 
+                className={'text-onyx'} 
+                onClick={(e) => { (i != current) ? handler(e, i) : false }}>
+                    {i === current ? '•' : '◦'}
+            </button>
+            ))
     )
 }
 

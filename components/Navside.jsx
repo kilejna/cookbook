@@ -4,6 +4,11 @@ import { BiSearchAlt } from 'react-icons/bi'
 import { BsInfo } from 'react-icons/bs'
 import { GiSpoon, GiChickenOven, GiShinyApple, GiRiceCooker } from 'react-icons/gi'
 
+/*
+TODO:
+    - Add transition on hover
+*/
+
 const sideNav = [
     {
         text: 'Advanced Search',

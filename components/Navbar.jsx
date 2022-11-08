@@ -4,6 +4,13 @@ import { IoSearchCircleOutline } from "react-icons/io5";
 import { IoIosGlobe } from "react-icons/io";
 import { BsSun, BsGlobe } from "react-icons/bs";
 
+/*
+TODO:
+    - Search bar functionality
+    - Language toggle
+    - Dark theme toggle
+    - Light theme toggle
+*/
 const Navbar = () => {
     return (
         <div className="fixed top-0 left-0 z-10 w-screen duration-300 ease-in bg-lgrey">
@@ -13,14 +20,14 @@ const Navbar = () => {
                 </Link>
                 <ul className="flex items-center min-w-0 justify-evenly">
                     <li className="flex flex-row px-1 m-2 bg-lblue/20 rounded-2xl place-items-center">
-                        <IoSearchCircleOutline className="text-xl" color="#657075"/>
-                        <div className="min-w-0 px-1 py-1 text-xs text-dbgrey"><input className="bg-transparent outline-none max-w-[24vw] placeholder:text-dbgrey" placeholder="Quick search..."/></div>
+                        <IoSearchCircleOutline className="text-xl" color="#657075" />
+                        <div className="min-w-0 px-1 py-1 text-xs text-dbgrey"><input className="bg-transparent outline-none max-w-[24vw] placeholder:text-dbgrey" placeholder="Quick search..." /></div>
                     </li>
                     <li>
-                        <BsSun className="mx-1.5" fill="#d7eefa"/>
+                        <BsSun className="mx-1.5" fill="#d7eefa" />
                     </li>
                     <li>
-                        <IoIosGlobe className="mx-1.5" color="#d7eefa"/>
+                        <IoIosGlobe className="mx-1.5" color="#d7eefa" />
                     </li>
                 </ul>
             </div>
