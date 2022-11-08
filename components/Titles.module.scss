@@ -1,0 +1,68 @@
+.hide {
+    z-index: 10;
+    top: 0px;
+    flex-basis: 100%;
+    height: fit-content;
+    overflow: hidden;
+    vertical-align: middle;
+    animation: slideOut ease-in-out forwards;
+    animation-duration: 0.75s;
+    transform-origin: right;
+}
+
+.show {
+    z-index: 0;
+    top: 0px;
+    flex-basis: 0%;
+    overflow: hidden;
+    height: 0%;
+    vertical-align: middle;
+    animation: slideIn ease-in-out forwards;
+    animation-duration: 0.75s;
+    animation-delay: 0.75s;
+    transform-origin: right;
+}
+
+.ltext {
+    font-size: clamp(9vmin, 9vmin, 12vmin);
+}
+
+.mtext {
+    font-size: clamp(5vmin, 6vmin, 7vmin);
+}
+
+.stext {
+    font-size: clamp(3vmin, 3.5vmin, 4vmin);
+}
+
+@keyframes slideOut {
+    0% {
+        flex-basis: 100%;
+        opacity: 1;
+    }
+    99% {
+        height: 100%;
+    }
+
+    100% {
+        flex-basis: 0%;
+        opacity: 1;
+        height: 0px;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        flex-basis: 0%;
+        opacity: 1;
+        height: 0%;
+    }
+    1% {
+        height: 100%;
+    }
+    100% {
+        flex-basis: 100%;
+        opacity: 1;
+        height: 100%;
+    }
+}

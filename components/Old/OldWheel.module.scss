@@ -1,0 +1,217 @@
+.wheel {
+    display: grid;
+    grid-template-areas: "layer";
+    place-items: center;
+    border-radius: 50%;
+
+    --radius: 63vmin;
+    width: calc(2 * var(--radius));
+    height: calc(2 * var(--radius));
+    max-height: 650px;
+    max-width: 650px;
+}
+
+.item {
+    grid-area: layer;
+    width: 62vmin;
+    height: 62vmin;
+    min-width: 300px;
+    min-height: 300px;
+    max-width: 650px;
+    max-height: 650px;
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+
+    // Decimal value, 0-1 based on the child's index.
+    --d: 1;
+    // Offset to get better starting placement on the circle
+    --r-offset: 0deg;
+    // Full circle
+    --r-amount: 1turn;
+    // Rotation based on the decimal and r modifiers
+    --r: calc((var(--r-amount) * var(--d)) + var(--r-offset));
+    // Rotate, transform out, then negative rotation so the content appears upright
+    --transform: rotate(var(--r)) translate(var(--radius));
+
+    transform: var(--transform);
+
+    &__default {
+        @extend .item;
+        transform: rotate(-135deg) translate(var(--radius));
+    }
+
+    &__activecw {
+        @extend .item;
+        animation: activecw 1.5s ease-in-out forwards;
+    }
+
+    &__idlecw {
+        @extend .item;
+        animation: idlecw 1.5s ease-in-out forwards;
+    }
+
+    &__activeacw {
+        @extend .item;
+        animation: activeacw 1.5s ease-in-out forwards;
+    }
+
+    &__idleacw {
+        @extend .item;
+        animation: idleacw 1.5s ease-in-out forwards;
+    }
+}
+
+.hide {
+    z-index: 10;
+    top: 0px;
+    flex-basis: 100%;
+    height: fit-content;
+    overflow: hidden;
+    vertical-align: middle;
+    //transform: translateX(100%);
+    animation: slideOut ease-in-out forwards;
+    animation-duration: 0.75s;
+    transform-origin: right;
+}
+
+.show {
+    z-index: 0;
+    top: 0px;
+    flex-basis: 0%;
+    overflow: hidden;
+    height: 0%;
+    vertical-align: middle;
+    animation: slideIn ease-in-out forwards;
+    animation-duration: 0.75s;
+    animation-delay: 0.75s;
+    transform-origin: right;
+}
+
+.fadein {
+    animation: fadeIn forwards;
+    animation-duration: 0.75s;
+    animation-delay: 0.75s;
+}
+
+.fadeout {
+    animation: fadeOut forwards;
+    animation-duration: 0.75s;
+}
+
+.translateRight {
+    //--translatex: calc(92px * --difference)
+    //transform: translateX(0px);
+    animation: moveRight 1.5s ease-in-out forwards;
+}
+
+.translateX {
+    animation: moveLeft 1.5s ease-in-out forwards;
+}
+
+.slides {
+    transition: flex 1.5s
+}
+
+@keyframes activecw {
+    from {
+        transform: rotate(-135deg) translate(var(--radius));
+    }
+
+    to {
+        transform: rotate(45deg) translate(var(--radius));
+    }
+}
+
+@keyframes idlecw {
+    from {
+        transform: rotate(-315deg) translate(var(--radius));
+    }
+
+    to {
+        transform: rotate(-135deg) translate(var(--radius));
+    }
+}
+
+@keyframes activeacw {
+    from {
+        transform: rotate(-135deg) translate(var(--radius));
+    }
+
+    to {
+        transform: rotate(-315deg) translate(var(--radius));
+    }
+}
+
+@keyframes idleacw {
+    from {
+        transform: rotate(45deg) translate(var(--radius));
+    }
+
+    to {
+        transform: rotate(-135deg) translate(var(--radius));
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        flex-basis: 100%;
+        opacity: 1;
+    }
+    99% {
+        height: fit-content;
+    }
+
+    100% {
+        flex-basis: 0%;
+        opacity: 1;
+        height: 0px;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        flex-basis: 0%;
+        opacity: 1;
+        height: 0%;
+    }
+    1% {
+        height: 100%;
+    }
+    100% {
+        flex-basis: 100%;
+        opacity: 1;
+        height: 100%;
+    }
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+@keyframes moveRight {
+    0% {
+        transform: translateX(calc(-92px * var(--difference)));
+        //transform: translateX(-92px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes moveLeft {
+    0% {
+        transform: translateX(calc(92px * var(--difference)));
+        //transform: translateX(92px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}

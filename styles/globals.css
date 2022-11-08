@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-lbgrey;
+    }
+    #__next {
+        @apply box-border m-0 lg:h-full;
+    }
+    @font-face {
+        font-family: 'Yellowtail';
+        src: url('/fonts/Yellowtail-Regular.ttf');
+    }
+    @font-face {
+        font-family: 'Freestyle Script';
+        src: url('/fonts/Freestyle Script Regular.ttf');
+    }
+    @font-face {
+        font-family: 'RedHatDispay';
+        src: url('/fonts/RedHatDisplay.ttf');
+    }
+}

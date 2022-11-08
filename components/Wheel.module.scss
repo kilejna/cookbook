@@ -1,0 +1,112 @@
+.wheel {
+    display: grid;
+    grid-template-areas: "layer";
+    top: 0px;
+    left: 0px;
+    border-radius: 50%;
+    position: relative;
+
+    --radius: clamp(300px, 78vmin, 650px);
+    width: calc(var(--radius));
+    height: calc(var(--radius));
+
+}
+
+.item {
+    grid-area: layer;
+    width: clamp(300px, 78vmin, 650px);
+    height: clamp(300px, 78vmin, 650px);
+    border-radius: 50%;
+//IMAGE SCALES TOO FAST COMPARED TO VP, IMAGE MOVES OUT TOO FAST
+    display: grid;
+    place-items: center;
+    transform-origin: left top;
+
+    // Decimal value, 0-1 based on the child's index.
+    --d: 1;
+    // Offset to get better starting placement on the circle
+    --r-offset: 0deg;
+    // Full circle
+    --r-amount: 1turn;
+    // Rotation based on the decimal and r modifiers
+    --r: calc((var(--r-amount) * var(--d)) + var(--r-offset));
+    // Rotate, transform out, then negative rotation so the content appears upright
+    --transform: rotate(var(--r)) translate(100px)
+    rotate(calc(-0.125 * var(--r)));
+
+    transform: var(--transform);
+
+    &__default {
+        @extend .item;
+        transform: rotate(-135deg) translate(100px)
+        rotate(calc(-0.125 * var(--r)));
+    }
+
+    &__activecw {
+        @extend .item;
+        animation: activecw 1.5s ease-in-out forwards;
+    }
+
+    &__idlecw {
+        @extend .item;
+        animation: idlecw 1.5s ease-in-out forwards;
+    }
+
+    &__activeacw {
+        @extend .item;
+        animation: activeacw 1.5s ease-in-out forwards;
+    }
+
+    &__idleacw {
+        @extend .item;
+        animation: idleacw 1.5s ease-in-out forwards;
+    }
+}
+
+@keyframes activecw {
+    from {
+        transform: rotate(-135deg) translate(100px)
+        rotate(calc(-0.125 * var(--r)));
+    }
+
+    to {
+        transform: rotate(45deg) translate(0px)
+        rotate(calc(-0.125 * var(--r)));
+    }
+}
+
+@keyframes idlecw {
+    from {
+        transform: rotate(-315deg) translate(0px)
+        rotate(calc(-0.125 * var(--r)));
+    }
+
+    to {
+        transform: rotate(-135deg) translate(100px)
+        rotate(calc(-0.125 * var(--r)));
+    }
+}
+
+@keyframes activeacw {
+    from {
+        transform: rotate(-135deg) translate(100px)
+        rotate(calc(-0.125 * var(--r)));
+    }
+
+    to {
+        transform: rotate(-315deg) translate(0px)
+        rotate(calc(-0.125 * var(--r)));
+    }
+}
+
+@keyframes idleacw {
+    from {
+        transform: rotate(45deg) translate(0px)
+        rotate(calc(-0.125 * var(--r)));
+    }
+
+    to {
+        transform: rotate(-135deg) translate(100px)
+        rotate(calc(-0.125 * var(--r)));
+    }
+}

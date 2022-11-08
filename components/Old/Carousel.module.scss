@@ -1,0 +1,66 @@
+.circle {
+  display: grid;
+  grid-template-areas: "layer";
+  place-items: center;
+  background: #185adb;
+  border-radius: 50%;
+
+  --radius: 51vmin;
+  width: calc(1.5 * var(--radius));
+  height: calc(1.5 * var(--radius));
+}
+
+.item {
+  grid-area: layer;
+  width: 10vmin;
+  height: 10vmin;
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background: #ffc947;
+  color: #185adb;
+  font-weight: bold;
+  font-size: 3vmin;
+
+  // Decimal value, 0-1 based on the child's index.
+  --d: 1;
+  // Offset to get better starting placement on the circle
+  --r-offset: -135deg;
+  // Full circle
+  --r-amount: 1turn;
+  // Rotation based on the decimal and r modifiers
+  --r: calc(1turn + var(--r-offset));
+  // Rotate, transform out, then negative rotation so the content appears upright
+  --transform: rotate(var(--r)) translate(33vmin);
+
+  transform: var(--transform);
+  transition: transform 1.5s ease-in;
+
+  &__default {
+    @extend .item;
+    visibility: hidden;
+    transform: rotate(-135deg) translate(33vmin);
+}
+
+   &__activecw {
+    @extend .item;
+    --r-offset: -315deg;
+  }
+
+  &__idlecw {
+    @extend .item;
+    --r-offset: -135deg;
+  }
+
+  &__activeacw {
+    @extend .item;
+    --r-offset: 45deg;
+  }
+
+  &__idleacw {
+    @extend .item;
+    --r-offset: -135deg;
+  }
+}

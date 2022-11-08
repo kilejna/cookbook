@@ -1,0 +1,63 @@
+@property --num {
+    syntax: '<integer>';
+    initial-value: 0;
+    inherits: false;
+  }
+
+  @property --dec {
+    syntax: '<integer>';
+    initial-value: 0;
+    inherits: false;
+  }
+
+.nutritionBar {
+    width: 0%;
+    background-color: var(--c);
+    animation: barMove 700ms forwards;
+    animation-delay: var(--d);
+}
+
+.text {
+    animation: counter 700ms forwards;
+    animation-delay: var(--d);
+    counter-reset: num var(--num) dec var(--dec);
+}
+
+.text::before {
+    content: counter(num) "." counter(dec)
+}
+
+.wedge {
+    transform-origin: center;
+    transform: rotate(var(--r));
+    animation: slice1 600ms both;
+}
+
+.slice {
+    animation: sliceAnim 1.3s forwards;
+}
+
+@keyframes barMove {
+    0% {width: 0%}
+    100% {width: var(--w)}
+}
+
+@keyframes counter {
+    0% {
+        --num: 0;
+        --dec: 0;
+    }
+    100% {
+        --num: var(--n);
+        --dec: var(--decimal);
+    }
+}
+
+@keyframes slice1 {
+    0% {stroke-dasharray: 1 var(--circ);}
+    100% {stroke-dasharray: var(--d1)};
+}
+@keyframes sliceAnim {
+    0% {stroke-dasharray: 0 0 0 100;}
+    100% {stroke-dasharray: var(--da);}
+}

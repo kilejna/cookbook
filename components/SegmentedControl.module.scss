@@ -1,0 +1,8 @@
+.active {
+    left: calc((33.333333% * var(--i)) + (4px * var(--i)));
+    transition: left 0.5s;
+}
+
+.change {
+    animation: stop;
+}
